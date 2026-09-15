@@ -1,0 +1,193 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * SISTEMA DE DISEÑO — FERIA Y FIESTAS OLULA DEL RÍO 2026
+ * Identidad tomada del Libro Oficial "OLULA EN FERIA":
+ *  - Negro tipográfico muy pesado para titulares
+ *  - Turquesa, magenta, amarillo y azul cielo como colores de campaña
+ *  - Formas onduladas, tramas de rayas y lunares sobre blanco
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Colores de campaña */
+  --color-turquesa: var(--turquesa);
+  --color-turquesa-dark: var(--turquesa-dark);
+  --color-magenta: var(--magenta);
+  --color-amarillo: var(--amarillo);
+  --color-cielo: var(--cielo);
+  --color-tinta: var(--tinta);
+  --color-crema: var(--crema);
+
+  --font-display: "Archivo Black", "Arial Black", sans-serif;
+  --font-script: "Sacramento", cursive;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1rem;
+
+  --turquesa: oklch(0.74 0.129 199);
+  --turquesa-dark: oklch(0.58 0.11 205);
+  --magenta: oklch(0.6 0.263 350);
+  --amarillo: oklch(0.82 0.158 79);
+  --cielo: oklch(0.86 0.083 221);
+  --tinta: oklch(0.18 0.012 265);
+  --crema: oklch(0.985 0.008 90);
+
+  --background: oklch(1 0 0);
+  --foreground: var(--tinta);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--tinta);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--tinta);
+  --primary: var(--turquesa-dark);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0.015 200);
+  --secondary-foreground: var(--tinta);
+  --muted: oklch(0.968 0.008 240);
+  --muted-foreground: oklch(0.48 0.02 258);
+  --accent: var(--magenta);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.912 0.014 240);
+  --input: oklch(0.912 0.014 240);
+  --ring: var(--turquesa);
+
+  --sombra-tarjeta: 0 10px 30px -18px oklch(0.18 0.012 265 / 0.45);
+  --sombra-alta: 0 24px 60px -28px oklch(0.18 0.012 265 / 0.55);
+}
+
+.dark {
+  --background: oklch(0.16 0.012 265);
+  --foreground: oklch(0.98 0.003 248);
+  --card: oklch(0.22 0.014 265);
+  --card-foreground: oklch(0.98 0.003 248);
+  --popover: oklch(0.22 0.014 265);
+  --popover-foreground: oklch(0.98 0.003 248);
+  --secondary: oklch(0.28 0.02 260);
+  --secondary-foreground: oklch(0.98 0.003 248);
+  --muted: oklch(0.28 0.02 260);
+  --muted-foreground: oklch(0.75 0.02 258);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--magenta);
+    color: white;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--turquesa-dark);
+    outline-offset: 2px;
+  }
+}
+
+@utility titular {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+}
+
+@utility manuscrita {
+  font-family: var(--font-script);
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+@utility tarjeta {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+/* Trama de rayas del libro */
+@utility trama-rayas {
+  background-image: repeating-linear-gradient(
+    -60deg,
+    currentColor 0 3px,
+    transparent 3px 9px
+  );
+}
+
+@utility trama-lunares {
+  background-image: radial-gradient(currentColor 1.6px, transparent 1.7px);
+  background-size: 14px 14px;
+}
+
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility aparece {
+  animation: subir 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
